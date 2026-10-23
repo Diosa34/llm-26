@@ -1,0 +1,33 @@
+paths:
+  corpus_dir: "C:/Users/Diosa/Desktop/Master/3/data_for_llm_2"
+  markdown_dir: "C:/Users/Diosa/Desktop/Master/3/markdown_for_llm_2"
+  artifacts_dir: "./artifacts"
+  gold_path: "./eval/gold.json"
+
+chunking:
+  splitter: hybrid          # recursive | markdown | semantic | hybrid
+  chunk_size: 800           # 100–1000
+  overlap: 300
+  headers_mode: both        # none | text | metadata | both
+
+embeddings:
+  vectorization: hybrid     # dense | sparse | hybrid
+  dense_model: intfloat/multilingual-e5-large
+  sparse_model: bm25        # bm25
+  batch_size: 16
+
+store:
+  qdrant_path: "./artifacts/qdrant"
+  hnsw_m: 32
+  hnsw_ef_construct: 128
+  hnsw_ef_search: 128
+
+retrieval:
+  top_k: 10
+  rrf_k: 60
+
+llm:
+  base_url: "http://127.0.0.1:11434"
+  model: qwen2.5:3b
+  temperature: 0.1
+  llm_max_tokens: 4096

@@ -1,0 +1,36 @@
+# Конфигурация эксперимента RAG. CLI-флаги перекрывают эти значения.
+# Артефакты версионируются по hash параметров (run_id).
+
+paths:
+  corpus_dir: "C:/Users/Diosa/Desktop/Master/3/data_for_llm_2"
+  markdown_dir: "C:/Users/Diosa/Desktop/Master/3/markdown_for_llm_2"
+  artifacts_dir: "./artifacts"
+  gold_path: "./eval/gold.json"
+
+chunking:
+  splitter: recursive          # recursive | markdown | html | semantic | hybrid
+  chunk_size: 100         
+  overlap: 0
+  headers_mode: none        # none | text | metadata | both
+
+embeddings:
+  vectorization: sparse     # dense | sparse | hybrid
+  dense_model: intfloat/multilingual-e5-small
+  sparse_model: bm25        # bm25
+  batch_size: 16
+
+store:
+  qdrant_path: "./artifacts/qdrant"
+  hnsw_m: 8
+  hnsw_ef_construct: 32
+  hnsw_ef_search: 16
+
+retrieval:
+  top_k: 3
+  rrf_k: 60
+
+llm:
+  base_url: "http://127.0.0.1:11434"
+  model: qwen2.5:3b
+  temperature: 0.1
+  llm_max_tokens: 4096
